@@ -1,0 +1,339 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head lang="pl">
+<meta charset="utf-8"/>
+<script src="https://kit.fontawesome.com/5c9b593a64.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Righteous&display=swap" rel="stylesheet">
+<title>STEROWNIK OŚWIETLENIA 💡</title>
+<link rel="icon" type="image/png" href="https://image.flaticon.com/icons/png/512/129/129724.png" sizes="256x256" />
+<style>
+@keyframes cont
+{
+	0%
+	{
+		margin-top: -65%;
+	}
+	100%
+	{
+		margin-top: 0%;
+	}
+}
+@keyframes load
+{
+	0%
+	{
+		opacity: 1;
+		margin-top: 37%;
+	}
+	33%
+	{
+		opacity: 0;
+		margin-top: 37%;
+	}
+	100%
+	{
+		opacity: 0;
+		margin-top: 0%;
+	}
+}
+@keyframes loading
+{
+	0%
+	{
+		width: 0%;
+	}
+	100%
+	{
+		width: 100%;
+	}
+}
+body
+{
+	background-color:#35363a;
+	margin: 0px;
+	font-family: 'Righteous', cursive;
+	color: #eeeeee;
+}
+#logo
+{
+	width: 100%;
+	height: 100px;
+	background-color: #181818; 
+	color: #eeeeee;
+	font-size: 80px;
+	text-align: center;
+	letter-spacing: 6px;
+	margin: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Fredoka One', cursive;
+	border-bottom: 5px solid #444444;
+	text-shadow:
+	3px 3px 0 #444444,
+	-3px 3px 0 #444444,
+	-3px -3px 0 #444444,
+	3px -3px 0 #444444;
+}
+#container
+{
+	-webkit-text-stroke: 1px black;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1420px;
+	margin-top: -50%;
+	animation-name: cont;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-delay: 3s;
+}
+#loading
+{
+	-webkit-text-stroke: 2px black;
+	position: relative;
+	font-size: 80px;
+	width: 520px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 37%;
+	animation-name: load;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-delay: 2s;
+}
+#loading::after
+{
+	content: "ŁADOWANIE...";
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #00c1ca;
+	overflow: hidden;
+	height: 100px;
+	animation-name: loading;
+	animation-duration: 2s;
+}
+.kol
+{
+	float: left;
+	width: 284px;
+	margin-top: 30px;
+	text-align: center;
+	font-size: 150px;
+}
+#kol1
+{
+	margin-left: 142px;
+}
+.podpisy
+{
+	font-size: 30px;
+	text-align: center;
+}
+.temp
+{
+	font-size: 45px;
+	text-align: center;
+}
+#temp1
+{
+	margin-top: 80px;
+}
+#brama
+{
+	margin-top: 80px;
+	font-size: 150px;
+	text-align: center;
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#odswiez
+{
+	margin-top: 5px;
+	text-align: center;
+	font-size: 70px;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+<link rel='stylesheet' href='https://gitcdn.link/cdn/maateusz66/test/main/styl.css'/>
+<link rel="manifest" href="/manifest.json"/>
+<script>
+	strp1="";
+	strp2="";
+	strp3="";
+	strp4="";
+	strodswiez="";
+	strbrama="";
+	strtemperatura="błąd";
+	strwilgotnosc="błąd";
+	strrestart="";
+	function getInfo()
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "ajax_inputs" + strp1 + strp2 + strp3 + strp4 + strodswiez + strbrama + strrestart, true);
+		xhr.send(null);
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				if (this.responseXML != null) 
+				{
+					if (this.responseXML.getElementsByTagName('P1')[0].childNodes[0].nodeValue === "on")
+					{
+						document.getElementById("p1").innerHTML = "<i class=\"fas fa-lightbulb\" style=\"color: #00c1ca;\"></i>";
+					}
+					else
+					{
+						document.getElementById("p1").innerHTML = "<i class=\"far fa-lightbulb\"></i>";
+					}
+					if (this.responseXML.getElementsByTagName('P1')[1].childNodes[0].nodeValue === "on")
+					{
+						document.getElementById("p2").innerHTML = "<i class=\"fas fa-lightbulb\" style=\"color: #00c1ca;\"></i>";
+					}
+					else
+					{
+						document.getElementById("p2").innerHTML = "<i class=\"far fa-lightbulb\"></i>";
+					}
+					if (this.responseXML.getElementsByTagName('P1')[2].childNodes[0].nodeValue === "on")
+					{
+						document.getElementById("p3").innerHTML = "<i class=\"fas fa-lightbulb\" style=\"color: #00c1ca;\"></i>";
+					}
+					else
+					{
+						document.getElementById("p3").innerHTML = "<i class=\"far fa-lightbulb\"></i>";
+					}
+					if (this.responseXML.getElementsByTagName('P1')[3].childNodes[0].nodeValue === "on")
+					{
+						document.getElementById("p4").innerHTML = "<i class=\"fas fa-lightbulb\" style=\"color: #00c1ca;\"></i>";
+					}
+					else
+					{
+						document.getElementById("p4").innerHTML = "<i class=\"far fa-lightbulb\"></i>";
+					}
+					if (this.responseXML.getElementsByTagName('P1')[4].childNodes[0].nodeValue === "on")
+					{
+						document.getElementById("brama").innerHTML = "";
+						//<i class=\"fas fa-door-open\" style=\"color: #00c1ca\"></i>
+					}
+					else
+					{
+						document.getElementById("brama").innerHTML = "";
+						//<i class=\"fas fa-door-closed\"></i>
+					}
+					strtemperatura=this.responseXML.getElementsByTagName('P1')[5].childNodes[0].nodeValue;
+					strwilgotnosc=this.responseXML.getElementsByTagName('P1')[6].childNodes[0].nodeValue;
+				}
+			}
+		}
+		strp1="";
+		strp2="";
+		strp3="";
+		strp4="";
+		strodswiez="";
+		strbrama="";
+		strrestart="";
+	}
+	function fp1()
+	{
+		strp1="&p1=1";
+		getInfo();
+	}
+	function fp2()
+	{
+		strp2="&p2=1";
+		getInfo();
+	}
+	function fp3()
+	{
+		strp3="&p3=1";
+		getInfo();
+	}
+	function fp4()
+	{
+		strp4="&p4=1";
+		getInfo();
+	}
+	function odswiez()
+	{
+		document.getElementById("odswiez").innerHTML = "<i class=\"fas fa-sync-alt\" style=\"color: #00c1ca;\"></i>"
+		strodswiez="&odswiez=1";
+		getInfo();
+		strodswiez="&odswiez=1";
+		getInfo();
+		setTimeout(nowedane,5000);
+	}
+	function nowedane()
+	{
+		if(strwilgotnosc>0)
+		{
+			document.getElementById("temperatura").innerHTML = strtemperatura+"°C";
+			document.getElementById("wilgotnosc").innerHTML = strwilgotnosc+"%";
+		}
+		else
+		{
+			document.getElementById("temperatura").innerHTML = "błąd";
+			document.getElementById("wilgotnosc").innerHTML = "błąd";
+		}
+		document.getElementById("odswiez").innerHTML = "<i class=\"fas fa-sync-alt\"</i>"
+	}
+	function fbrama()
+	{
+		strbrama="&br=1";
+		getInfo();
+	}
+	function restart()
+	{
+		if(confirm("Sterownik za chwilę zostanie zrestartowany!\nZgadzasz się?"))
+		{
+			strrestart="&res=1";
+			getInfo();
+		}
+	}
+</script>
+<script>
+	const PATH = '/service-worker.js';
+
+	let isServiceWorkersSupport = ('serviceWorker' in navigator);
+
+	if (isServiceWorkersSupport) {
+		console.log('Will service worker register?');
+		navigator.serviceWorker.register(PATH).then(function () {
+			console.log('Yes it did.');
+		}).catch(function (err) {
+			console.log('No it didnt. This happened: ', err)
+		});
+	}
+</script>
+</head>
+<!-- <div id="p1" class="przyciski"><a><i class="far fa-lightbulb"></i></a></div> -->
+<body onload="getInfo();setTimeout(nowedane,1000);">
+	<div id="container">
+	<div id="logo">STER<i class="fas fa-power-off" onclick="restart()"></i>WANIE</div>
+		<div class="kol" id="kol1">
+			<div id="p1" class="przyciski" onclick="fp1()"><i class="far fa-lightbulb"></i></div>
+			<div class="podpisy">DOM - PRZÓD</div>
+		</div>
+		<div class="kol">
+			<div id="p2" class="przyciski" onclick="fp2()"><i class="far fa-lightbulb"></i></div>
+			<div class="podpisy">CHOINKA - TYŁ 1</div>
+		</div>
+		<div class="kol">
+			<div id="p3" class="przyciski" onclick="fp3()"><i class="far fa-lightbulb"></i></div>
+			<div class="podpisy">CHOINKA - TYŁ 2</div>
+		</div>
+		<div class="kol">
+			<div id="p4" class="przyciski" onclick="fp4()"><i class="far fa-lightbulb"></i></div>
+			<div class="podpisy">LEDY - KUCHNIA</div>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="temp" id="temp1"><i class="fas fa-thermometer-three-quarters" style="color:#ff0000"></i> Temperatura: <a id="temperatura">...</a></div>
+		<div class="temp"><i class="fas fa-tint" style="color:#00f4ff"></i> Wilgotność: <a id="wilgotnosc">...</a></div>
+		<div id="odswiez" onclick="odswiez()"><i class="fas fa-sync-alt"></i></div>
+		<div id="brama" onclick="<!--fbrama()-->"><i class="<!--fas fa-door-closed-->"></i></div>
+		<div class="podpisy"><!--BRAMA WJAZDOWA--></div>
+	</div>
+	<div id="loading">ŁADOWANIE...</div>
+</body>
+</html>
